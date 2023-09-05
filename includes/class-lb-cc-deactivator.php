@@ -6,8 +6,8 @@
  * @link       https://github.com/dmilegal
  * @since      1.0.0
  *
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/includes
+ * @package    LB_CC
+ * @subpackage LB_CC/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/includes
+ * @package    LB_CC
+ * @subpackage LB_CC/includes
  * @author     Dmitriy Krapivko <dmitry.krapivko@legalbet.com>
  */
-class Lb_Casino_Compare_Deactivator {
+class LB_CC_Deactivator {
 
 	/**
 	 * Short Description. (use period)

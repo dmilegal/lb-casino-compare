@@ -9,8 +9,8 @@
  * @link       https://github.com/dmilegal
  * @since      1.0.0
  *
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/includes
+ * @package    LB_CC
+ * @subpackage LB_CC/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/includes
+ * @package    LB_CC
+ * @subpackage LB_CC/includes
  * @author     Dmitriy Krapivko <dmitry.krapivko@legalbet.com>
  */
-class Lb_Casino_Compare_i18n {
+class LB_CC_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Lb_Casino_Compare_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'lb-casino-compare',
+			'lb-cc',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

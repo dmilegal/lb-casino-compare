@@ -9,8 +9,8 @@
  * @link       https://github.com/dmilegal
  * @since      1.0.0
  *
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/includes
+ * @package    LB_CC
+ * @subpackage LB_CC/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/includes
+ * @package    LB_CC
+ * @subpackage LB_CC/includes
  * @author     Dmitriy Krapivko <dmitry.krapivko@legalbet.com>
  */
-class Lb_Casino_Compare {
+class LB_CC {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Lb_Casino_Compare {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Lb_Casino_Compare_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      LB_CC_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -67,17 +67,18 @@ class Lb_Casino_Compare {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'LB_CASINO_COMPARE_VERSION' ) ) {
-			$this->version = LB_CASINO_COMPARE_VERSION;
+		if ( defined( 'LB_CC_VERSION' ) ) {
+			$this->version = LB_CC_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'lb-casino-compare';
+		$this->plugin_name = 'lb-cc';
 
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_shortcodes();
 
 	}
 
@@ -86,10 +87,10 @@ class Lb_Casino_Compare {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Lb_Casino_Compare_Loader. Orchestrates the hooks of the plugin.
-	 * - Lb_Casino_Compare_i18n. Defines internationalization functionality.
-	 * - Lb_Casino_Compare_Admin. Defines all hooks for the admin area.
-	 * - Lb_Casino_Compare_Public. Defines all hooks for the public side of the site.
+	 * - LB_CC_Loader. Orchestrates the hooks of the plugin.
+	 * - LB_CC_i18n. Defines internationalization functionality.
+	 * - LB_CC_Admin. Defines all hooks for the admin area.
+	 * - LB_CC_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -103,33 +104,40 @@ class Lb_Casino_Compare {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-casino-compare-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-casino-compare-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-i18n.php';
+
+		/**
+		 * The class responsible for defining shortcodes functionality
+		 * of the plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-shortcodes.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-lb-casino-compare-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-lb-cc-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-lb-casino-compare-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-lb-cc-public.php';
+		
 
-		$this->loader = new Lb_Casino_Compare_Loader();
+		$this->loader = new LB_CC_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Lb_Casino_Compare_i18n class in order to set the domain and to register the hook
+	 * Uses the LB_CC_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +145,7 @@ class Lb_Casino_Compare {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Lb_Casino_Compare_i18n();
+		$plugin_i18n = new LB_CC_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,7 +160,7 @@ class Lb_Casino_Compare {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Lb_Casino_Compare_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new LB_CC_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -168,11 +176,22 @@ class Lb_Casino_Compare {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Lb_Casino_Compare_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new LB_CC_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+	}
+
+	/**
+	 * Register all of the hooks related to the public-facing functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_shortcodes() {
+		new LB_CC_Shortcodes( );
 	}
 
 	/**
@@ -199,7 +218,7 @@ class Lb_Casino_Compare {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Lb_Casino_Compare_Loader    Orchestrates the hooks of the plugin.
+	 * @return    LB_CC_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

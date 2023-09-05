@@ -6,8 +6,8 @@
  * @link       https://github.com/dmilegal
  * @since      1.0.0
  *
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/includes
+ * @package    LB_CC
+ * @subpackage LB_CC/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/includes
+ * @package    LB_CC
+ * @subpackage LB_CC/includes
  * @author     Dmitriy Krapivko <dmitry.krapivko@legalbet.com>
  */
-class Lb_Casino_Compare_Loader {
+class LB_CC_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

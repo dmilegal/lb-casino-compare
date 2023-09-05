@@ -6,8 +6,8 @@
  * @link       https://github.com/dmilegal
  * @since      1.0.0
  *
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/public
+ * @package    LB_CC
+ * @subpackage LB_CC/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/public
+ * @package    LB_CC
+ * @subpackage LB_CC/public
  * @author     Dmitriy Krapivko <dmitry.krapivko@legalbet.com>
  */
-class Lb_Casino_Compare_Public {
+class LB_CC_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Lb_Casino_Compare_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Lb_Casino_Compare_Loader as all of the hooks are defined
+		 * defined in LB_CC_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Lb_Casino_Compare_Loader will then create the relationship
+		 * The LB_CC_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/lb-casino-compare-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/lb-cc-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Lb_Casino_Compare_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Lb_Casino_Compare_Loader as all of the hooks are defined
+		 * defined in LB_CC_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Lb_Casino_Compare_Loader will then create the relationship
+		 * The LB_CC_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lb-casino-compare-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lb-cc-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

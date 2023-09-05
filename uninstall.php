@@ -22,7 +22,7 @@
  * @link       https://github.com/dmilegal
  * @since      1.0.0
  *
- * @package    Lb_Casino_Compare
+ * @package    LB_CC
  */
 
 // If uninstall not called from WordPress, then exit.

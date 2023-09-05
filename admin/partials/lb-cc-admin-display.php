@@ -8,8 +8,8 @@
  * @link       https://github.com/dmilegal
  * @since      1.0.0
  *
- * @package    Lb_Casino_Compare
- * @subpackage Lb_Casino_Compare/admin/partials
+ * @package    LB_CC
+ * @subpackage LB_CC/admin/partials
  */
 ?>
 
