@@ -101,6 +101,18 @@ class LB_CC {
 	private function load_dependencies() {
 
 		/**
+		 * The class is responsible for the current state of the comparison. Contains information 
+		 * about the current posts in the comparison.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-state.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the public-facing
+		 * side of the site.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-template-loader.php';
+
+		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
@@ -191,7 +203,7 @@ class LB_CC {
 	 * @access   private
 	 */
 	private function define_shortcodes() {
-		new LB_CC_Shortcodes( );
+		LB_CC_Shortcodes::init();
 	}
 
 	/**

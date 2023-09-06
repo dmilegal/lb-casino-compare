@@ -38,6 +38,11 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'LB_CC_VERSION', '1.0.0' );
 
 /**
+ * Plugin dirname
+ */
+define( 'LB_CC_DIRNAME',  plugin_dir_path( __FILE__ ));
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-lb-cc-activator.php
  */

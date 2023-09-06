@@ -24,12 +24,25 @@ class LB_CC_Shortcodes {
 	public static function init() {
 		$shortcodes = array(
 			'compare_table'                    => __CLASS__ . '::compare_table',
+			'compare_button'		           => __CLASS__ . '::compare_button',
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
 			add_shortcode( apply_filters( "{$shortcode}_shortcode_tag", $shortcode ), $function );
 		}
 
+		LB_CC_Shortcodes::load_dependencies();
+
+	}
+
+	/**
+	 * Load shortcode dependencies.
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private static function load_dependencies() {
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/shortcodes/class-lb-cc-buton-shortcode.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/shortcodes/class-lb-cc-shortcode.php';
 	}
 
 	/**
@@ -44,19 +57,16 @@ class LB_CC_Shortcodes {
 	public static function shortcode_wrapper(
 		$function,
 		$atts = array(),
-		$wrapper = array(
-			'class'  => 'woocommerce',
-			'before' => null,
-			'after'  => null,
-		)
+		$content
 	) {
+		$args = [$atts];
+		
+		if ($content)
+			array_push($args, $content);
+
 		ob_start();
 
-		// @codingStandardsIgnoreStart
-		echo empty( $wrapper['before'] ) ? '<div class="' . esc_attr( $wrapper['class'] ) . '">' : $wrapper['before'];
-		call_user_func( $function, $atts );
-		echo empty( $wrapper['after'] ) ? '</div>' : $wrapper['after'];
-		// @codingStandardsIgnoreEnd
+		call_user_func( $function, ...$args );
 
 		return ob_get_clean();
 	}
@@ -68,6 +78,16 @@ class LB_CC_Shortcodes {
 	 * @return string
 	 */
 	public static function compare_table( $atts ) {
-		return self::shortcode_wrapper( array( 'LB_CC_Shortcode', 'output' ), $atts );
+		return self::shortcode_wrapper( array( 'LB_CC_Shortcode', 'render' ), $atts );
+	}
+
+	/**
+	 * Compare button shortcode.
+	 *
+	 * @param array $atts Attributes.
+	 * @return string
+	 */
+	public static function compare_button( $atts, $content ) {
+		return self::shortcode_wrapper( array( 'LB_CC_Button_Shortcode', 'render' ), $atts, $content);
 	}
 }

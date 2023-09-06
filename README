@@ -1,0 +1,18 @@
+## Shortcodes
+
+#### `compare_button`
+
+params:
+
+`id` - Id of the current post where the shortcode is displayed. (required)
+
+`title_add` - Custom text for the "add to compare" button.
+
+`title_remove` - Custom text for the "remove from compare" button.
+
+usage:
+
+``
+do_shortcode('[compare_button id="44"]')
+``
+

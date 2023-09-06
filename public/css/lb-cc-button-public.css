@@ -1,0 +1,14 @@
+.lb-cc-toggle-btn {
+  display: inline-block;
+}
+
+.lb-cc-toggle-btn:not(.lb-cc-toggle-btn--active) {
+  display: none;
+}
+
+.lb-cc-toggle-btn--inline {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  margin: 0;
+}
