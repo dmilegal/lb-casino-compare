@@ -73,6 +73,7 @@ class LB_CC_Public {
 		 * class.
 		 */
 
+		wp_enqueue_style( $this->plugin_name . '-awesome-notifications' , plugin_dir_url( __FILE__ ) . 'css/libs/awesome-notifications.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/lb-cc-public.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name . '-button', plugin_dir_url( __FILE__ ) . 'css/lb-cc-button-public.css', array(), $this->version, 'all' );
 
@@ -97,8 +98,11 @@ class LB_CC_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lb-cc-public.js', array( 'jquery' ), $this->version, false );
-		wp_add_inline_script( $this->plugin_name, 'const LB_CC_COOKIE_NAME="'. LB_CC_State::COMPARE_COOKIE_NAME . '";', 'before' );
+		wp_enqueue_script(  $this->plugin_name . '-awesome-notifications', plugin_dir_url( __FILE__ ) . 'js/libs/awesome-notifications.js', array(  ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lb-cc-public.js', array( 'jquery' ), $this->version, true );
+		wp_add_inline_script( $this->plugin_name, 'const LB_CC_COOKIE_NAME="'. LB_CC_State::COMPARE_COOKIE_NAME . '"; LB_CC_LIMIT=3; LB_CC_TRANSLATE={
+			MAX_LIMIT: "'. __('MAX_LIMIT', 'lb-cc') .'"
+		}', 'before' );
 	}
 
 }

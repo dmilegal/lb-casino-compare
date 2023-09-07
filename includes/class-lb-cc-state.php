@@ -21,6 +21,6 @@ class LB_CC_State {
 	 * Init shortcodes.
 	 */
 	public static function get_compare_ids() {
-		return isset($_COOKIE[LB_CC_State::COMPARE_COOKIE_NAME]) ? explode($_COOKIE[LB_CC_State::COMPARE_COOKIE_NAME], ',') : [];
+		return isset($_COOKIE[LB_CC_State::COMPARE_COOKIE_NAME]) ? explode(',', $_COOKIE[LB_CC_State::COMPARE_COOKIE_NAME]) : [];
 	}
 }

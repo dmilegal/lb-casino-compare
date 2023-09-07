@@ -1,32 +1,66 @@
-(function( $ ) {
-	'use strict';
+(function () {
+  const notifier = new AWN({
+    position: 'bottom-left'
+  });
 
-	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+  (function (btns) {
+    "use strict";
 
-})( jQuery );
+    if (!btns.length) return;
+
+    btns.forEach((btn) => btn.addEventListener("click", toggleCompare));
+
+    function toggleCompare() {
+      try {
+        if (this.classList.contains("lb-cc-toggle-btn--add")) {
+          addCompareIds([this.dataset.id]);
+        } else {
+          removeCompareIds([this.dataset.id]);
+        }
+
+        this.parentElement
+          .querySelector(".lb-cc-toggle-btn:not(.lb-cc-toggle-btn--active)")
+          .classList.add("lb-cc-toggle-btn--active");
+        this.classList.remove("lb-cc-toggle-btn--active");
+      } catch (error) {
+        LB_CC_TRANSLATE[error.message] && notifier.warning(LB_CC_TRANSLATE[error.message])
+        console.error(error);
+      }
+    }
+  })(document.querySelectorAll(".lb-cc-toggle-btn"));
+
+  function getCurrentCompareIds() {
+    const data = document.cookie.split("; ").reduce((acc, item) => {
+      const [name, value] = item.split("=");
+      acc[name] = value;
+      return acc;
+    }, {});
+    return data[LB_CC_COOKIE_NAME] ? data[LB_CC_COOKIE_NAME].split(",") : [];
+  }
+
+  function addCompareIds(ids) {
+    let currentIds = getCurrentCompareIds();
+    currentIds.push(...ids);
+    currentIds = [...new Set(currentIds)];
+
+    if (currentIds.length > LB_CC_LIMIT) throw new Error("MAX_LIMIT");
+
+    document.cookie = `${LB_CC_COOKIE_NAME}=${currentIds.join(",")}`;
+
+    return true;
+  }
+
+  /**
+   *
+   * @param {string[]} ids
+   * @returns
+   */
+  function removeCompareIds(ids) {
+    let currentIds = getCurrentCompareIds();
+    currentIds = currentIds.filter((id) => ids.indexOf(id) == -1);
+
+    document.cookie = `${LB_CC_COOKIE_NAME}=${currentIds.join(",")}`;
+
+    return true;
+  }
+})();
