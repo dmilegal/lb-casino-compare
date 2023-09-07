@@ -43,6 +43,11 @@ define( 'LB_CC_VERSION', '1.0.0' );
 define( 'LB_CC_DIRNAME',  plugin_dir_path( __FILE__ ));
 
 /**
+ * Limit
+ */
+define( 'LB_CC_COMPARE_LIMIT',  3);
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-lb-cc-activator.php
  */

@@ -100,8 +100,8 @@ class LB_CC_Public {
 
 		wp_enqueue_script(  $this->plugin_name . '-awesome-notifications', plugin_dir_url( __FILE__ ) . 'js/libs/awesome-notifications.js', array(  ), $this->version, true );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lb-cc-public.js', array( 'jquery' ), $this->version, true );
-		wp_add_inline_script( $this->plugin_name, 'const LB_CC_COOKIE_NAME="'. LB_CC_State::COMPARE_COOKIE_NAME . '"; LB_CC_LIMIT=3; LB_CC_TRANSLATE={
-			MAX_LIMIT: "'. __('MAX_LIMIT', 'lb-cc') .'"
+		wp_add_inline_script( $this->plugin_name, 'const LB_CC_COOKIE_NAME="'. LB_CC_State::COMPARE_COOKIE_NAME . '"; LB_CC_LIMIT='. LB_CC_COMPARE_LIMIT .'; LB_CC_TRANSLATE={
+			MAX_LIMIT: "'. sprintf(__('The maximum number of casinos for comparison is %d', 'lb-cc'), LB_CC_COMPARE_LIMIT) .'"
 		}', 'before' );
 	}
 
