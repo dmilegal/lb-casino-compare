@@ -101,8 +101,19 @@ class LB_CC_Public {
 		wp_enqueue_script(  $this->plugin_name . '-awesome-notifications', plugin_dir_url( __FILE__ ) . 'js/libs/awesome-notifications.js', array(  ), $this->version, true );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lb-cc-public.js', array( 'jquery' ), $this->version, true );
 		wp_add_inline_script( $this->plugin_name, 'const LB_CC_COOKIE_NAME="'. LB_CC_State::COMPARE_COOKIE_NAME . '"; LB_CC_LIMIT='. LB_CC_COMPARE_LIMIT .'; LB_CC_TRANSLATE={
-			MAX_LIMIT: "'. sprintf(__('The maximum number of casinos for comparison is %d', 'lb-cc'), LB_CC_COMPARE_LIMIT) .'"
+			MAX_LIMIT: "'. sprintf(__('The maximum number of casinos for comparison is %d', 'lb-cc'), LB_CC_COMPARE_LIMIT) .'",
+			error: "'. __('error', 'lb-cc') .'",
+			success: "'. __('success', 'lb-cc') .'",
+			attention: "'. __('attention', 'lb-cc') .'",
+			loading: "'. __('loading', 'lb-cc') .'",
+			info: "'. __('info', 'lb-cc') .'",
+			tip: "'. __('tip', 'lb-cc') .'",
+			cancel: "'. __('cancel', 'lb-cc') .'",
 		}', 'before' );
+	}
+
+	public function show_bar() {
+		LB_CC_Template_Loader::load()->get_template_part( "compare-bar" );
 	}
 
 }

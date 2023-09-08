@@ -1,6 +1,15 @@
 (function () {
   const notifier = new AWN({
-    position: 'bottom-left'
+    position: 'bottom-left',
+    labels: {
+      tip:  LB_CC_TRANSLATE.tip,
+      info:  LB_CC_TRANSLATE.info,
+      success:  LB_CC_TRANSLATE.success,
+      attention:  LB_CC_TRANSLATE.attention,
+      loading:  LB_CC_TRANSLATE.loading,
+      error:  LB_CC_TRANSLATE.error,
+      cancel:  LB_CC_TRANSLATE.cancel,
+    }
   });
 
   (function (btns) {
