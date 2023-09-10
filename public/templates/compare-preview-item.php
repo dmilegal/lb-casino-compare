@@ -1,10 +1,12 @@
 <?
 $id = property_exists($data, 'id') ? $data->id : null;
 ?>
-<div class="lb-cc-preview-item">
-    <button class="lb-cc-preview-item__remove" title="<?= __('remove item', 'lb-cc')?>"></button>
+<div class="lb-cc-preview-item" data-id="<?= $id ?>">
+    <button class="lb-cc-preview-item__remove" title="<?= __('remove item', 'lb-cc')?>">
+        <i class="fas fa-times"></i>
+    </button>
     <? if ($id) { ?>
-    <?= get_the_post_thumbnail($id, [85, 85], [
+    <?= get_the_post_thumbnail($id, [85, 0], [
         'class' => "lb-cc-preview-item__thumb",
     ]) ?>
     <? } else { ?>
