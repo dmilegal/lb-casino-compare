@@ -4,6 +4,8 @@
     --lb-cc--remove-button--color: #fff;
     --lb-cc--remove-button--bg: #ff2453;
     --lb-cc--close-button--bg: #111;
+    --lb-cc--bar-button--bg: #ffd32a;
+    --lb-cc--bar-button--color: #111;
 }
     
 
@@ -15,12 +17,42 @@
 }
 
 .lb-cc-bar {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 100;
+    
     background-color: #fff;
     padding: 30px;
     width: 600px;
     max-width: 100%;
     box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 38%);
     border-radius: 5px;
+}
+
+.lb-cc-bar-show {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border: 0;
+    border-radius: 50%;
+    font-size: 1rem;
+    background-color: var(--lb-cc--bar-button--bg);
+    color: var(--lb-cc--bar-button--color);
+    box-shadow: 1px 1px 5px 0px #9b9b9b99;
+    transition: background-color 300ms ease-in-out;
+}
+
+.lb-cc-bar-show:hover {
+    background-color: color-mix(in srgb, var(--lb-cc--bar-button--bg), #000 8%);
 }
 
 .lb-cc-bar__close {
@@ -32,7 +64,7 @@
     position: absolute;
     top: 8px;
     right: 8px;
-    color: color-mix(in srgb, var(--lb-cc--close-button--bg) 100%, #fff);
+    color:  var(--lb-cc--close-button--bg);
     color: var(--lb-cc--close-button--bg);
     transition: color 300ms ease-in-out;
 }
@@ -74,7 +106,7 @@
     padding: 10px 24px;
     border: 0;
     background-color: var(--lb-cc--compare-button--bg);
-    background-color: color-mix(in srgb, var(--lb-cc--compare-button--bg) 100%, #000);
+    background-color: var(--lb-cc--compare-button--bg);
     border-radius: 20px;
     color: var(--lb-cc--compare-button--color);
     transition: background-color 300ms ease-in-out;
@@ -112,7 +144,7 @@
     border-radius: 50%;
     color: rgb(255 255 255 / 85%);
     font-size: 11px;
-    background-color: color-mix(in srgb, var(--lb-cc--remove-button--bg) 100%, #000);
+    background-color: var(--lb-cc--remove-button--bg);
     background-color: var(--lb-cc--remove-button--bg);
     transition: background-color 300ms ease-in-out;
 }

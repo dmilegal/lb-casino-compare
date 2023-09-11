@@ -23,27 +23,35 @@
       .forEach((btn) => btn.addEventListener("click", toggleCompare));
   }
 
-  function initBarItemRemoveBtn(container) {
+  function initBarItemRemoveBtns(container) {
     container
       .querySelectorAll(".lb-cc-preview-item__remove")
       .forEach((btn) => btn.addEventListener("click", removeBarItem));
   }
 
-  function initCloseBarBtn(container) {
+  function initOpenBarBtns(container) {
+    container
+      .querySelectorAll(".lb-cc-bar-show")
+      .forEach((btn) => btn.addEventListener("click", showBar));
+  }
+
+  function initCloseBarBtns(container) {
     container
       .querySelectorAll(".lb-cc-bar__close")
-      .forEach((btn) => btn.addEventListener("click", closeBar));
+      .forEach((btn) => btn.addEventListener("click", hideBar));
+  }
+
+  function initOpenCompareBtns(container) {
+    container
+      .querySelectorAll(".lb-cc-bar__show-compare")
+      .forEach((btn) => btn.addEventListener("click", showModal));
   }
 
   initToggleBtns(document);
-  initBarItemRemoveBtn(document);
-  initCloseBarBtn(document);
-
-  function closeBar() {
-    const barEl = this.closest(".lb-cc-bar");
-    if (!barEl) return;
-    barEl.style.display = "none";
-  }
+  initBarItemRemoveBtns(document);
+  initOpenBarBtns(document);
+  initCloseBarBtns(document);
+  initOpenCompareBtns(document);
 
   function removeBarItem() {
     const item = this.closest(".lb-cc-preview-item");
@@ -77,6 +85,7 @@
     addCompareIdsToCookie(ids);
     addCompareIdsToBtns(ids);
     addCompareItemToBar(ids);
+    toggleBar();
 
     return true;
   }
@@ -134,7 +143,7 @@
           <img width="85" height="85" src="${btn.dataset.src}">
           <div class="lb-cc-preview-item__title">${btn.dataset.title}</div>`;
 
-      initBarItemRemoveBtn(div);
+      initBarItemRemoveBtns(div);
 
       container.appendChild(div);
     });
@@ -151,6 +160,9 @@
     removeCompareIdsFromCookie(ids);
     removeCompareIdsFromBtns(ids);
     removeCompareItemFromBar(ids);
+
+    if (getCurrentCompareIds().length < 2) hideBar();
+
     return true;
   }
 
@@ -203,5 +215,38 @@
     });
 
     return true;
+  }
+
+  function toggleBar() {
+    let currentIds = getCurrentCompareIds();
+
+    if (currentIds.length > 1) showBar();
+    else hideBar();
+  }
+
+  function showBar() {
+    const btn = document.querySelector(".lb-cc-bar-show");
+    const bar = document.querySelector(".lb-cc-bar");
+
+    if (btn) btn.style.display = "none";
+
+    if (bar) bar.style.display = "";
+  }
+
+  function hideBar() {
+    let currentIds = getCurrentCompareIds();
+
+    const btn = document.querySelector(".lb-cc-bar-show");
+    const bar = document.querySelector(".lb-cc-bar");
+
+    if (btn) btn.style.display = currentIds.length > 1 ? "" : "none";
+
+    if (bar) bar.style.display = "none";
+  }
+
+  function showModal() {
+    const tpl = document.querySelector('.lb-cc-modal-tpl');
+    const clone = tpl.content.cloneNode(true);
+    new AWN().modal(clone.firstChild.outerHTML)
   }
 })();

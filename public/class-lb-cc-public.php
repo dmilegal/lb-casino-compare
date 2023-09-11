@@ -116,4 +116,10 @@ class LB_CC_Public {
 		LB_CC_Template_Loader::load()->get_template_part( "compare-bar" );
 	}
 
+	public function show_compare_modal_tpl() {
+		echo '<template class="lb-cc-modal-tpl">';
+		LB_CC_Template_Loader::load()->get_template_part( "compare-modal" );
+		echo '</template>';
+	}
+
 }
