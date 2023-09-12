@@ -56,14 +56,17 @@
   function removeBarItem() {
     const item = this.closest(".lb-cc-preview-item");
     removeCompareIds([item.dataset.id]);
+    if (getCurrentCompareIds().length == 0) hideBar();
   }
 
   function toggleCompare() {
     try {
       if (this.classList.contains("lb-cc-toggle-btn--add")) {
         addCompareIds([this.dataset.id]);
+        showBar();
       } else {
         removeCompareIds([this.dataset.id]);
+        if (getCurrentCompareIds().length == 0) hideBar();
       }
     } catch (error) {
       LB_CC_TRANSLATE[error.message] &&
@@ -72,32 +75,23 @@
     }
   }
 
-  function getCurrentCompareIds() {
-    const data = document.cookie.split("; ").reduce((acc, item) => {
-      const [name, value] = item.split("=");
-      acc[name] = value;
-      return acc;
-    }, {});
-    return data[LB_CC_COOKIE_NAME] ? data[LB_CC_COOKIE_NAME].split(",") : [];
-  }
-
   function addCompareIds(ids) {
-    addCompareIdsToCookie(ids);
+    addCompareIdsToStorage(ids);
     addCompareIdsToBtns(ids);
-    addCompareItemToBar(ids);
-    toggleBar();
+    updatePreviewList();
 
     return true;
   }
 
-  function addCompareIdsToCookie(ids) {
-    let currentIds = getCurrentCompareIds();
-    currentIds.push(...ids);
-    currentIds = [...new Set(currentIds)];
-
-    if (currentIds.length > LB_CC_LIMIT) throw new Error("MAX_LIMIT");
-
-    document.cookie = `${LB_CC_COOKIE_NAME}=${currentIds.join(",")}`;
+  /**
+   *
+   * @param {string[]} ids
+   * @returns
+   */
+  function removeCompareIds(ids) {
+    removeCompareIdsFromStorage(ids);
+    removeCompareIdsFromBtns(ids);
+    removeCompareItemFromBar(ids);
 
     return true;
   }
@@ -127,26 +121,56 @@
    * @param {string[]} ids
    * @returns
    */
-  function addCompareItemToBar(ids) {
-    ids.forEach((id) => {
-      const btn = document.querySelector(
-        `.lb-cc-toggle-btn--add[data-id="${id}"]`
+  async function updatePreviewList() {
+    const container = document.querySelector(".lb-cc-bar__list");
+    container.innerHTML = "";
+    const html = await loadPreviewCompares(getCurrentCompareIds());
+
+    container.innerHTML = html;
+
+    initBarItemRemoveBtns(document);
+
+    return true;
+  }
+
+  async function loadPreviewCompares(ids) {
+    if ("ctrl" in loadPreviewCompares) loadPreviewCompares.ctrl.abort();
+
+    loadPreviewCompares.ctrl = new AbortController();
+
+    const signal = loadPreviewCompares.ctrl.signal;
+
+    try {
+      const res = await fetch(
+        "/wp-json/" +
+          LB_CC_ROUTES.namespace +
+          LB_CC_ROUTES.preview_compares +
+          "?" +
+          new URLSearchParams({ ids }),
+        { signal }
       );
-      const container = document.querySelector(".lb-cc-bar__list");
+      const data = await res.json();
 
-      const div = document.createElement("div");
-      div.classList.add("lb-cc-preview-item");
-      div.dataset.id = id;
-      div.innerHTML = `<button class="lb-cc-preview-item__remove" title="remove item">
-              <i class="fas fa-times" aria-hidden="true"></i>
-          </button>
-          <img width="85" height="85" src="${btn.dataset.src}">
-          <div class="lb-cc-preview-item__title">${btn.dataset.title}</div>`;
+      return data.html;
+    } catch (error) {
+      return "";
+    }
+  }
 
-      initBarItemRemoveBtns(div);
+  function getCurrentCompareIds() {
+    const data = localStorage.getItem(LB_CC_COOKIE_NAME);
 
-      container.appendChild(div);
-    });
+    return data ? JSON.parse(data) : [];
+  }
+
+  function addCompareIdsToStorage(ids) {
+    let currentIds = getCurrentCompareIds();
+    currentIds.push(...ids);
+    currentIds = [...new Set(currentIds)];
+
+    if (currentIds.length > LB_CC_LIMIT) throw new Error("MAX_LIMIT");
+
+    localStorage.setItem(LB_CC_COOKIE_NAME, JSON.stringify(currentIds));
 
     return true;
   }
@@ -156,26 +180,11 @@
    * @param {string[]} ids
    * @returns
    */
-  function removeCompareIds(ids) {
-    removeCompareIdsFromCookie(ids);
-    removeCompareIdsFromBtns(ids);
-    removeCompareItemFromBar(ids);
-
-    if (getCurrentCompareIds().length < 2) hideBar();
-
-    return true;
-  }
-
-  /**
-   *
-   * @param {string[]} ids
-   * @returns
-   */
-  function removeCompareIdsFromCookie(ids) {
+  function removeCompareIdsFromStorage(ids) {
     let currentIds = getCurrentCompareIds();
     currentIds = currentIds.filter((id) => ids.indexOf(id) == -1);
 
-    document.cookie = `${LB_CC_COOKIE_NAME}=${currentIds.join(",")}`;
+    localStorage.setItem(LB_CC_COOKIE_NAME, JSON.stringify(currentIds));
 
     return true;
   }
@@ -225,10 +234,15 @@
   }
 
   function showBar() {
+    let currentIds = getCurrentCompareIds();
+
     const btn = document.querySelector(".lb-cc-bar-show");
+    const ccBtn = document.querySelector(".lb-cc-bar__show-compare");
     const bar = document.querySelector(".lb-cc-bar");
 
     if (btn) btn.style.display = "none";
+
+    if (ccBtn) ccBtn.style.display = currentIds.length > 1 ? "" : "none";
 
     if (bar) bar.style.display = "";
   }
@@ -237,16 +251,19 @@
     let currentIds = getCurrentCompareIds();
 
     const btn = document.querySelector(".lb-cc-bar-show");
+    const ccBtn = document.querySelector(".lb-cc-bar__show-compare");
     const bar = document.querySelector(".lb-cc-bar");
 
     if (btn) btn.style.display = currentIds.length > 1 ? "" : "none";
+
+    if (ccBtn) ccBtn.style.display = currentIds.length > 1 ? "" : "none";
 
     if (bar) bar.style.display = "none";
   }
 
   function showModal() {
-    const tpl = document.querySelector('.lb-cc-modal-tpl');
+    const tpl = document.querySelector(".lb-cc-modal-tpl");
     const clone = tpl.content.cloneNode(true);
-    new AWN().modal(clone.firstChild.outerHTML)
+    new AWN().modal(clone.firstChild.outerHTML);
   }
 })();

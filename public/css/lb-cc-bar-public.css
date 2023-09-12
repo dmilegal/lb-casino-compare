@@ -79,6 +79,11 @@
     column-gap: 15px;
 }
 
+.lb-cc-bar__list:empty {
+    display: none;
+}
+
+
 .lb-cc-bar__title {
     font-size: 1.375em;
     line-height: 1.2;
@@ -91,6 +96,15 @@
     line-height: 1.2;
     text-align: center;
     margin-bottom: 1.75em;
+}
+
+.lb-cc-bar__loading {
+    display: flex;
+    justify-content: center;
+}
+
+.lb-cc-bar__list:not(:empty) + .lb-cc-bar__loading {
+    display: none;
 }
 
 .lb-cc-bar__actions {

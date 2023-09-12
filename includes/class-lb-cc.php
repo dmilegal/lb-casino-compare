@@ -79,6 +79,7 @@ class LB_CC {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 		$this->define_shortcodes();
+		$this->define_rest();
 
 	}
 
@@ -131,6 +132,11 @@ class LB_CC {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-shortcodes.php';
 
 		/**
+		 * The class responsible for defining all rest api routes.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-rest.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-lb-cc-admin.php';
@@ -140,6 +146,8 @@ class LB_CC {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-lb-cc-public.php';
+
+		
 		
 
 		$this->loader = new LB_CC_Loader();
@@ -205,6 +213,18 @@ class LB_CC {
 	 */
 	private function define_shortcodes() {
 		LB_CC_Shortcodes::init();
+	}
+
+	/**
+	 * Register rest api routes
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_rest() {
+		$rest = new LB_CC_Rest();
+
+		$this->loader->add_action( 'rest_api_init', $rest, 'init' );
 	}
 
 	/**

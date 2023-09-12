@@ -109,6 +109,11 @@ class LB_CC_Public {
 			info: "'. __('info', 'lb-cc') .'",
 			tip: "'. __('tip', 'lb-cc') .'",
 			cancel: "'. __('cancel', 'lb-cc') .'",
+		};
+		const LB_CC_ROUTES = {
+			namespace: "'. LB_CC_Rest::namespace .'",
+			preview_compares: "'. LB_CC_Rest::preview_compares_route .'",
+			table_route: "'. LB_CC_Rest::compare_table_route .'",
 		}', 'before' );
 	}
 
