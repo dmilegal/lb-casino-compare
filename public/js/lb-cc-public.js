@@ -18,9 +18,13 @@
    * Init buttons
    */
   function initToggleBtns(container) {
+    const selectedIds = getCurrentCompareIds();
+
     container
       .querySelectorAll(".lb-cc-toggle-btn")
       .forEach((btn) => btn.addEventListener("click", toggleCompare));
+
+    addCompareIdsToBtns(selectedIds);
   }
 
   function initBarItemRemoveBtns(container) {
