@@ -35,7 +35,7 @@ class LB_CC_Rest {
 		register_rest_route(static::namespace, static::compare_table_route, [
 			[
 				'methods'  => 'GET',
-				'callback' => fn($d) => $this->get_html_compares($d),
+				'callback' => fn($d) => $this->get_html_compare_table($d),
 				'args'     => $this->get_args(),
 			],
 			'schema' => fn() => $this->html_casinos_schema(),
@@ -65,12 +65,16 @@ class LB_CC_Rest {
 		$query = $this->build_query($request);
 		$items_html = [];
 		if ($query->have_posts()) {
+			$item_ind = 1;
 			while ($query->have_posts()) {
 				$query->the_post();
 				ob_start();
-				LB_CC_Template_Loader::load()->set_template_data(['id' => $id])->get_template_part("compare-item");
+				LB_CC_Template_Loader::load()->set_template_data([
+					'id' => get_the_id(), 
+					'item_ind' => $item_ind])->get_template_part("compare-item");
 				$items_html[] = ob_get_contents();
 				ob_end_clean();
+				$item_ind++;
 			}
 		}
 		wp_reset_postdata();

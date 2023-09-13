@@ -11,7 +11,7 @@
         <img width="45" height="45" src="<?= plugin_dir_url(  dirname(__FILE__) ) . '/images/loading.svg' ?>">
     </div>
     <div class="lb-cc-bar__actions">
-        <button class="lb-cc-bar__show-compare" style="display: none"><?= __('Go to Compare', 'lb-cc') ?></button>
+        <button class="lb-cc-button lb-cc-bar__show-compare" style="display: none"><?= __('Go to Compare', 'lb-cc') ?></button>
     </div>
 </div>
 

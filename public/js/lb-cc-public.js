@@ -14,17 +14,28 @@
     },
   });
 
+  function initInterface() {
+    const selectedIds = getCurrentCompareIds();
+
+    initToggleBtns(document);
+    initBarItemRemoveBtns(document);
+    initOpenBarBtns(document);
+    initCloseBarBtns(document);
+    initOpenCompareBtns(document);
+
+    addCompareIdsToBtns(selectedIds);
+    hideBar();
+  }
+
+  initInterface();
+
   /**
    * Init buttons
    */
   function initToggleBtns(container) {
-    const selectedIds = getCurrentCompareIds();
-
     container
       .querySelectorAll(".lb-cc-toggle-btn")
       .forEach((btn) => btn.addEventListener("click", toggleCompare));
-
-    addCompareIdsToBtns(selectedIds);
   }
 
   function initBarItemRemoveBtns(container) {
@@ -51,12 +62,6 @@
       .forEach((btn) => btn.addEventListener("click", showModal));
   }
 
-  initToggleBtns(document);
-  initBarItemRemoveBtns(document);
-  initOpenBarBtns(document);
-  initCloseBarBtns(document);
-  initOpenCompareBtns(document);
-
   function removeBarItem() {
     const item = this.closest(".lb-cc-preview-item");
     removeCompareIds([item.dataset.id]);
@@ -82,7 +87,6 @@
   function addCompareIds(ids) {
     addCompareIdsToStorage(ids);
     addCompareIdsToBtns(ids);
-    updatePreviewList();
 
     return true;
   }
@@ -120,15 +124,15 @@
     return true;
   }
 
-  /**
-   *
-   * @param {string[]} ids
-   * @returns
-   */
   async function updatePreviewList() {
+    const ids = getCurrentCompareIds();
+    if (!ids.length) {
+      container.innerHTML = "";
+      return;
+    }
     const container = document.querySelector(".lb-cc-bar__list");
     container.innerHTML = "";
-    const html = await loadPreviewCompares(getCurrentCompareIds());
+    const html = await loadPreviewCompares(ids);
 
     container.innerHTML = html;
 
@@ -149,6 +153,46 @@
         "/wp-json/" +
           LB_CC_ROUTES.namespace +
           LB_CC_ROUTES.preview_compares +
+          "?" +
+          new URLSearchParams({ ids }),
+        { signal }
+      );
+      const data = await res.json();
+
+      return data.html;
+    } catch (error) {
+      return "";
+    }
+  }
+
+  async function updateCompareList() {
+    const ids = getCurrentCompareIds();
+    if (!ids.length) {
+      container.innerHTML = "";
+      return;
+    }
+    const container = document.querySelector(".lb-cc-table");
+    container.innerHTML = "";
+    const html = await loadCompares(ids);
+
+    container.innerHTML = html;
+    container.style.setProperty('--lb-cc--column-count', ids.length);
+
+    return true;
+  }
+
+  async function loadCompares(ids) {
+    if ("ctrl" in loadCompares) loadCompares.ctrl.abort();
+
+    loadCompares.ctrl = new AbortController();
+
+    const signal = loadCompares.ctrl.signal;
+
+    try {
+      const res = await fetch(
+        "/wp-json/" +
+          LB_CC_ROUTES.namespace +
+          LB_CC_ROUTES.table_route +
           "?" +
           new URLSearchParams({ ids }),
         { signal }
@@ -230,13 +274,6 @@
     return true;
   }
 
-  function toggleBar() {
-    let currentIds = getCurrentCompareIds();
-
-    if (currentIds.length > 1) showBar();
-    else hideBar();
-  }
-
   function showBar() {
     let currentIds = getCurrentCompareIds();
 
@@ -249,6 +286,8 @@
     if (ccBtn) ccBtn.style.display = currentIds.length > 1 ? "" : "none";
 
     if (bar) bar.style.display = "";
+
+    if (currentIds.length) updatePreviewList();
   }
 
   function hideBar() {
@@ -268,6 +307,8 @@
   function showModal() {
     const tpl = document.querySelector(".lb-cc-modal-tpl");
     const clone = tpl.content.cloneNode(true);
-    new AWN().modal(clone.firstChild.outerHTML);
+    new AWN().modal(clone.firstChild.outerHTML, 'lb-cc-modal');
+
+    updateCompareList()
   }
 })();
