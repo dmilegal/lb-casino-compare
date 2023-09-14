@@ -24,7 +24,7 @@
     initOpenCompareBtns(document);
 
     addCompareIdsToBtns(selectedIds);
-    hideBar();
+    closeBar();
   }
 
   initInterface();
@@ -32,40 +32,49 @@
   /**
    * Init buttons
    */
-  function initToggleBtns(container) {
+  function initToggleBtns(container = document) {
     container
       .querySelectorAll(".lb-cc-toggle-btn")
       .forEach((btn) => btn.addEventListener("click", toggleCompare));
   }
 
-  function initBarItemRemoveBtns(container) {
+  function initBarItemRemoveBtns(container = document) {
     container
       .querySelectorAll(".lb-cc-preview-item__remove")
-      .forEach((btn) => btn.addEventListener("click", removeBarItem));
+      .forEach((btn) => btn.addEventListener("click", removeCompareItem));
   }
 
-  function initOpenBarBtns(container) {
+  function initModalItemRemoveBtns(container = document) {
+    container
+      .querySelectorAll(".lb-cc-item__remove")
+      .forEach((btn) => btn.addEventListener("click", removeCompareItem));
+  }
+
+  function initOpenBarBtns(container = document) {
     container
       .querySelectorAll(".lb-cc-bar-show")
       .forEach((btn) => btn.addEventListener("click", showBar));
   }
 
-  function initCloseBarBtns(container) {
+  function initCloseBarBtns(container = document) {
     container
       .querySelectorAll(".lb-cc-bar__close")
-      .forEach((btn) => btn.addEventListener("click", hideBar));
+      .forEach((btn) => btn.addEventListener("click", closeBar));
   }
 
-  function initOpenCompareBtns(container) {
+  function initOpenCompareBtns(container = document) {
     container
       .querySelectorAll(".lb-cc-bar__show-compare")
       .forEach((btn) => btn.addEventListener("click", showModal));
   }
 
-  function removeBarItem() {
-    const item = this.closest(".lb-cc-preview-item");
+  function removeCompareItem() {
+    const item = this.closest(".lb-cc-preview-item, .lb-cc-item");
     removeCompareIds([item.dataset.id]);
-    if (getCurrentCompareIds().length == 0) hideBar();
+    if (getCurrentCompareIds().length == 0) {
+      closeBar();
+      closeModal();
+    }
   }
 
   function toggleCompare() {
@@ -75,7 +84,7 @@
         showBar();
       } else {
         removeCompareIds([this.dataset.id]);
-        if (getCurrentCompareIds().length == 0) hideBar();
+        if (getCurrentCompareIds().length == 0) closeBar();
       }
     } catch (error) {
       LB_CC_TRANSLATE[error.message] &&
@@ -100,6 +109,7 @@
     removeCompareIdsFromStorage(ids);
     removeCompareIdsFromBtns(ids);
     removeCompareItemFromBar(ids);
+    removeCompareItemFromModal(ids);
 
     return true;
   }
@@ -176,8 +186,9 @@
     const html = await loadCompares(ids);
 
     container.innerHTML = html;
-    container.style.setProperty('--lb-cc--column-count', ids.length);
+    container.style.setProperty('--lb-cc--column--count', ids.length);
 
+    initModalItemRemoveBtns()
     return true;
   }
 
@@ -274,6 +285,25 @@
     return true;
   }
 
+  function removeCompareItemFromModal(ids) {
+    const table = document.querySelector('.lb-cc-table');
+
+    if (table) {
+      const ids = getCurrentCompareIds();
+      table.style.setProperty('--lb-cc--column--count', ids.length);
+    }
+   
+    ids.forEach((id) => {
+      const item = document.querySelector(
+        `.lb-cc-item[data-id="${id}"]`
+      );
+
+      item && item.remove();
+    });
+
+    return true;
+  }
+
   function showBar() {
     let currentIds = getCurrentCompareIds();
 
@@ -290,7 +320,7 @@
     if (currentIds.length) updatePreviewList();
   }
 
-  function hideBar() {
+  function closeBar() {
     let currentIds = getCurrentCompareIds();
 
     const btn = document.querySelector(".lb-cc-bar-show");
@@ -304,11 +334,30 @@
     if (bar) bar.style.display = "none";
   }
 
+  function initModalUI() {
+    initModal()
+  }
+
+  function initModal() {
+    const closeBtn = document.querySelector('.lb-cc-modal__close')
+    closeBtn && closeBtn.addEventListener('click', closeModal)
+  }
+
+  function closeModal() {
+    const modal = document.querySelector('.lb-cc-modal')
+    if (!modal) return;
+
+    const container = modal.closest('#awn-popup-wrapper')
+    container && container.dispatchEvent(new Event('click'))
+  }
+
   function showModal() {
     const tpl = document.querySelector(".lb-cc-modal-tpl");
     const clone = tpl.content.cloneNode(true);
     new AWN().modal(clone.firstChild.outerHTML, 'lb-cc-modal');
 
+    initModalUI()
     updateCompareList()
   }
+
 })();

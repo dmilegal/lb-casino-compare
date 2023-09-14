@@ -2,7 +2,7 @@
 $id = property_exists($data, 'id') ? $data->id : null;
 ?>
 <div class="lb-cc-preview-item" data-id="<?= $id ?>">
-    <button class="lb-cc-preview-item__remove" title="<?= __('remove item', 'lb-cc')?>">
+    <button class="lb-cc-button-remove lb-cc-preview-item__remove" title="<?= __('remove item', 'lb-cc')?>">
         <i class="fas fa-times"></i>
     </button>
     <? if ($id) { ?>
