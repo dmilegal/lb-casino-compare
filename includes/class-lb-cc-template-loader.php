@@ -59,7 +59,7 @@ if ( ! class_exists( 'LB_CC_Template_Loader' ) ) {
 		 *
 		 * @var string
 		 */
-		protected $plugin_template_directory = 'public/templates';
+		protected $plugin_template_directory = ['public/templates', 'admin/templates'];
 
 		/**
 		 * Internal use only: Store located template paths.
@@ -267,11 +267,16 @@ if ( ! class_exists( 'LB_CC_Template_Loader' ) ) {
 		 */
 		protected function get_template_paths() {
 			$theme_directory = trailingslashit( $this->theme_template_directory );
+			
 
 			$file_paths = array(
 				10  => trailingslashit( get_template_directory() ) . $theme_directory,
-				100 => $this->get_templates_dir(),
 			);
+
+			foreach ($this->get_templates_dir() as $ind => $dir) {
+				$file_paths[100 +  $ind * 10] =  $dir;
+			};
+			
 
 			// Only add this conditionally, so non-child themes don't redundantly check active theme twice.
 			if ( get_stylesheet_directory() !== get_template_directory() ) {
@@ -303,7 +308,7 @@ if ( ! class_exists( 'LB_CC_Template_Loader' ) ) {
 		 * @return string
 		 */
 		protected function get_templates_dir() {
-			return trailingslashit( $this->plugin_directory ) . $this->plugin_template_directory;
+			return array_map(fn($dir) => trailingslashit( $this->plugin_directory ) . $dir, $this->plugin_template_directory);
 		}
 	}
 }

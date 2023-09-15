@@ -37,10 +37,7 @@
 
 .lb-cc-bar-show {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
   z-index: 100;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,6 +51,16 @@
   color: var(--lb-cc--bar-button--color);
   box-shadow: 1px 1px 5px 0px #9b9b9b99;
   transition: background-color 300ms ease-in-out;
+}
+
+.lb-cc-bar-show--bottom-right {
+  right: var(--lb-cc--bar-button--offset--x, 16px);
+  bottom: var(--lb-cc--bar-button--offset--y, 16px);
+}
+
+.lb-cc-bar-show--bottom-left {
+  left: var(--lb-cc--bar-button--offset--x, 16px);
+  bottom: var(--lb-cc--bar-button--offset--y, 16px);
 }
 
 .lb-cc-bar-show:hover {
@@ -365,7 +372,7 @@
   text-align: center;
   font-size: 1rem;
   line-height: 1.2;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--lb-cc--secondary--color);
 }
 

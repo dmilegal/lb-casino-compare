@@ -80,6 +80,7 @@ class LB_CC {
 		$this->define_public_hooks();
 		$this->define_shortcodes();
 		$this->define_rest();
+		$this->define_settings_hooks();
 
 	}
 
@@ -143,6 +144,11 @@ class LB_CC {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-collector.php';
 
 		/**
+		 * The class responsible for settings.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lb-cc-settings.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-lb-cc-admin.php';
@@ -190,7 +196,17 @@ class LB_CC {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_page' );
+		$this->loader->add_action( 'acf/init', $plugin_admin, 'register_settings_page' );
+		
+		
+		
+	}
 
+	private function define_settings_hooks() {
+		$settings = new LB_CC_Settings();
+
+		$this->loader->add_action( 'acf/init', $settings, 'init' );
 	}
 
 	/**

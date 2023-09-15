@@ -55,6 +55,34 @@ class LB_CC_Admin {
 	}
 
 	/**
+	 * Add admin page.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_page() {
+		add_menu_page(__('Casino Comparison', 'lb-cc'), 
+		__('Casino Comparison', 'lb-cc'), 
+		'manage_options',
+		'lb-cc',
+		[$this, 'render_page'],
+		'dashicons-randomize');
+	}
+
+	public function register_settings_page() {
+		acf_add_options_page(array(
+			'page_title'  => __('Casino Comparison Settings', 'lb-cc'),
+			'menu_title'  => __('Settings', 'lb-cc'),
+			'menu_slug' => 'lb-cc-settings',
+			'parent_slug' => 'lb-cc',
+			'capability'  => 'manage_options',
+			'position'  => false,
+			'icon_url' => false,
+		));
+
+	}
+
+
+	/**
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
@@ -98,6 +126,15 @@ class LB_CC_Admin {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lb-cc-admin.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	/**
+	 * Get render page content.
+	 *
+	 * @since    1.0.0
+	 */
+	public function render_page() {
+		LB_CC_Template_Loader::load()->get_template_part("lb-cc-admin-display");
 	}
 
 }
