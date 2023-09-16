@@ -24,7 +24,7 @@
   position: fixed;
   bottom: 16px;
   right: 16px;
-  z-index: 100;
+  z-index: 9999;
 
   background-color: #fff;
   padding: 30px;
@@ -84,7 +84,6 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  color: var(--lb-cc--close-button--bg);
   color: var(--lb-cc--close-button--bg);
   transition: color 300ms ease-in-out;
 }

@@ -45,7 +45,7 @@ define( 'LB_CC_DIRNAME',  plugin_dir_path( __FILE__ ));
 /**
  * Limit
  */
-define( 'LB_CC_COMPARE_LIMIT',  3);
+define( 'LB_CC_COMPARE_LIMIT', get_field('lb_cc_max_count', 'option') ? intval(get_field('lb_cc_max_count', 'option')) : 2);
 
 /**
  * The code that runs during plugin activation.
