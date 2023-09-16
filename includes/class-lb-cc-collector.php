@@ -39,7 +39,7 @@ class LB_CC_Collector {
 	}
 
 	public static function collect_bonuses(int $id) {
-		$bonus_fields = get_field('bonus_fields', $id);
+		$bonus_fields = get_field('bonus_fields', $id) ? get_field('bonus_fields', $id) : [];
 		
 		return [
 			'title' => __('Bonuses', 'lb-cc'),
@@ -47,43 +47,43 @@ class LB_CC_Collector {
 				[
 					'title' => __('For whom', 'lb-cc'),
 					'data' => [
-						'value' =>  __($bonus_fields['for_whom'], 'lb-cc')
+						'value' => isset($bonus_fields['for_whom']) ? __($bonus_fields['for_whom'], 'lb-cc') : '-'
 					]
 				],
 				[
 					'title' => __('Form', 'lb-cc'),
 					'data' => [
-						'value' =>  __($bonus_fields['form'], 'lb-cc')
+						'value' => isset($bonus_fields['form']) ? __($bonus_fields['form'], 'lb-cc') : '-'
 					]
 				],
 				[
 					'title' => __('Type', 'lb-cc'),
 					'data' => [
-						'value' =>  __($bonus_fields['type'], 'lb-cc')
+						'value' => isset($bonus_fields['type']) ? __($bonus_fields['type'], 'lb-cc') : '-'
 					]
 				],
 				[
 					'title' => __('Term', 'lb-cc'),
 					'data' => [
-						'value' =>  __($bonus_fields['term'], 'lb-cc')
+						'value' =>   isset($bonus_fields['term']) ? __($bonus_fields['term'], 'lb-cc') : '-'
 					]
 				],
 				[
 					'title' => __('Best bonus', 'lb-cc'),
 					'data' => [
-						'value' =>  __($bonus_fields['best_bonus'], 'lb-cc')
+						'value' =>  isset($bonus_fields['best_bonus']) ? __($bonus_fields['best_bonus'], 'lb-cc') : '-'
 					]
 				],
 				[
 					'title' => __('Cashback', 'lb-cc'),
 					'data' => [
-						'value' =>  __($bonus_fields['cashback'], 'lb-cc')
+						'value' =>  isset($bonus_fields['cashback']) ? __($bonus_fields['cashback'], 'lb-cc') : '-'
 					]
 				],
 				[
 					'title' => __('Birthday bonus', 'lb-cc'),
 					'data' => [
-						'value' =>  __($bonus_fields['birthday_bonus'], 'lb-cc')
+						'value' =>  isset($bonus_fields['birthday_bonus']) ? __($bonus_fields['birthday_bonus'], 'lb-cc') : '-'
 					]
 				]
 			],
