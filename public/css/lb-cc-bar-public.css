@@ -212,6 +212,7 @@
   position: absolute;
   top: -7px;
   right: 8px;
+  z-index: 10;
 }
 
 @media (max-width: 768px) {
@@ -374,6 +375,7 @@
   position: absolute;
   top: -7px;
   left: calc(50% + 38px);
+  z-index: 10;
 }
 
 @media (max-width: 768px) {
