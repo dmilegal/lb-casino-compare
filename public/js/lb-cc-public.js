@@ -177,15 +177,12 @@
 
   async function updateCompareList() {
     const ids = getCurrentCompareIds();
-    if (!ids.length) {
-      container.innerHTML = "";
-      return;
-    }
-    const container = document.querySelector(".lb-cc-table");
-    container.innerHTML = "";
+    if (!ids.length) return;
+
+    const container = document.querySelector(".lb-cc-modal__inner");
     const html = await loadCompares(ids);
 
-    container.innerHTML = html;
+    container.insertAdjacentHTML("beforeend", html);
     container.style.setProperty("--lb-cc--column--count", ids.length);
 
     initModalItemRemoveBtns();
@@ -286,7 +283,7 @@
   }
 
   function removeCompareItemFromModal(ids) {
-    const table = document.querySelector(".lb-cc-table");
+    const table = document.querySelector(".lb-cc-modal__inner");
 
     if (table) {
       const ids = getCurrentCompareIds();
@@ -294,9 +291,9 @@
     }
 
     ids.forEach((id) => {
-      const item = document.querySelector(`.lb-cc-item[data-id="${id}"]`);
+      const items = document.querySelectorAll(`.lb-cc-item[data-id="${id}"]`);
 
-      item && item.remove();
+      items.length && items.forEach((el) => el.remove());
     });
 
     return true;

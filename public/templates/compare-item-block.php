@@ -7,7 +7,7 @@ if ($block) {
     $title = isset($block['title']) ? $block['title'] : '';
     $list = isset($block['list']) ? $block['list'] : [];
 ?>
-<div class="lb-cc-block"<?= $block_ind ? ' style="--lb-cc--block--ind: ' . $block_ind . '"' : '' ?>>
+<div class="lb-cc-block"  style="--lb-cc--block--ind: <?= $block_ind ?>;">
     <div class="lb-cc-block__row lb-cc-block__title" style="--lb-cc--block--item--ind: <?= $block_item_offset ?>"><?= $title ?></div>
     <? foreach ($list as $ind => $item) { ?>
         <div class="lb-cc-block__row lb-cc-block-item" style="--lb-cc--block--item--ind: <?= $block_item_offset + $ind + 1 ?>">

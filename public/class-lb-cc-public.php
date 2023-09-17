@@ -75,8 +75,7 @@ class LB_CC_Public {
 
 		wp_enqueue_style( $this->plugin_name . '-awesome-notifications' , plugin_dir_url( __FILE__ ) . 'css/libs/awesome-notifications.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/lb-cc-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( $this->plugin_name . '-button', plugin_dir_url( __FILE__ ) . 'css/lb-cc-button-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( $this->plugin_name . '-bar', plugin_dir_url( __FILE__ ) . 'css/lb-cc-bar-public.css', array(), $this->version, 'all' );
+
 	}
 
 	/**
