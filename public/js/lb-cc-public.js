@@ -186,9 +186,9 @@
     const html = await loadCompares(ids);
 
     container.innerHTML = html;
-    container.style.setProperty('--lb-cc--column--count', ids.length);
+    container.style.setProperty("--lb-cc--column--count", ids.length);
 
-    initModalItemRemoveBtns()
+    initModalItemRemoveBtns();
     return true;
   }
 
@@ -286,17 +286,15 @@
   }
 
   function removeCompareItemFromModal(ids) {
-    const table = document.querySelector('.lb-cc-table');
+    const table = document.querySelector(".lb-cc-table");
 
     if (table) {
       const ids = getCurrentCompareIds();
-      table.style.setProperty('--lb-cc--column--count', ids.length);
+      table.style.setProperty("--lb-cc--column--count", ids.length);
     }
-   
+
     ids.forEach((id) => {
-      const item = document.querySelector(
-        `.lb-cc-item[data-id="${id}"]`
-      );
+      const item = document.querySelector(`.lb-cc-item[data-id="${id}"]`);
 
       item && item.remove();
     });
@@ -335,29 +333,36 @@
   }
 
   function initModalUI() {
-    initModal()
+    initModal();
   }
 
   function initModal() {
-    const closeBtn = document.querySelector('.lb-cc-modal__close')
-    closeBtn && closeBtn.addEventListener('click', closeModal)
+    const closeBtn = document.querySelector(".lb-cc-modal__close");
+    const back = document.querySelector(".lb-cc-modal-scroll");
+    closeBtn && closeBtn.addEventListener("click", closeModal);
+    back && back.addEventListener("click", onBackplateClick);
+  }
+
+  function onBackplateClick(e) {
+    if (e.target !== this) return;
+
+    closeModal();
   }
 
   function closeModal() {
-    const modal = document.querySelector('.lb-cc-modal')
+    const modal = document.querySelector(".lb-cc-modal");
     if (!modal) return;
 
-    const container = modal.closest('#awn-popup-wrapper')
-    container && container.dispatchEvent(new Event('click'))
+    const container = modal.closest("#awn-popup-wrapper");
+    container && container.dispatchEvent(new Event("click"));
   }
 
   function showModal() {
     const tpl = document.querySelector(".lb-cc-modal-tpl");
     const clone = tpl.content.cloneNode(true);
-    new AWN().modal(clone.firstChild.outerHTML, 'lb-cc-modal');
+    new AWN().modal(clone.firstChild.outerHTML, "lb-cc-modal");
 
-    initModalUI()
-    updateCompareList()
+    initModalUI();
+    updateCompareList();
   }
-
 })();
