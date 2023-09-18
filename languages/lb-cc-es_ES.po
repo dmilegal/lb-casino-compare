@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LB Casinos Compare\n"
 "POT-Creation-Date: 2023-09-19 00:00+0300\n"
-"PO-Revision-Date: 2023-09-19 01:02+0300\n"
+"PO-Revision-Date: 2023-09-19 01:32+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -145,7 +145,7 @@ msgstr "eliminar elemento"
 
 #: public/templates/compare-item.php:14
 msgid "Review"
-msgstr "Consulte"
+msgstr "Revisar"
 
 #: public/templates/compare-modal.php:2
 msgid "close modal"
