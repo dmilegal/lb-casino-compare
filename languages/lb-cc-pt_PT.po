@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LB Casinos Compare\n"
-"POT-Creation-Date: 2023-09-19 00:00+0300\n"
-"PO-Revision-Date: 2023-09-19 01:02+0300\n"
+"POT-Creation-Date: 2023-09-19 00:01+0300\n"
+"PO-Revision-Date: 2023-09-19 01:18+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_ES\n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,27 +22,27 @@ msgstr ""
 
 #: admin/class-lb-cc-admin.php:63 admin/class-lb-cc-admin.php:64
 msgid "Casino Comparison"
-msgstr "Comparación de casinos"
+msgstr "Comparação de casinos"
 
 #: admin/class-lb-cc-admin.php:73
 msgid "Casino Comparison Settings"
-msgstr "Ajustes de comparación del casino"
+msgstr "Configurações de comparação de cassino"
 
 #: admin/class-lb-cc-admin.php:74
 msgid "Settings"
-msgstr "Ajustes"
+msgstr "Configurações"
 
 #: includes/class-lb-cc-collector.php:45
 msgid "Bonuses"
-msgstr "Bonificaciones"
+msgstr "Bônus"
 
 #: includes/class-lb-cc-collector.php:48
 msgid "For whom"
-msgstr "Para quién"
+msgstr "Para quem"
 
 #: includes/class-lb-cc-collector.php:54
 msgid "Form"
-msgstr "Formulario"
+msgstr "Forma"
 
 #: includes/class-lb-cc-collector.php:60
 msgid "Type"
@@ -50,11 +50,11 @@ msgstr "Tipo"
 
 #: includes/class-lb-cc-collector.php:66
 msgid "Term"
-msgstr "Plazo"
+msgstr "Prazo"
 
 #: includes/class-lb-cc-collector.php:72
 msgid "Best bonus"
-msgstr "Mejor bonificación"
+msgstr "Melhor bónus"
 
 #: includes/class-lb-cc-collector.php:78
 msgid "Cashback"
@@ -62,48 +62,48 @@ msgstr "Cashback"
 
 #: includes/class-lb-cc-collector.php:84
 msgid "Birthday bonus"
-msgstr "Bonificación de cumpleaños"
+msgstr "Bónus de aniversário"
 
 #: includes/class-lb-cc-rest.php:61 includes/class-lb-cc-rest.php:73
 msgid "Find casinos"
-msgstr "Buscar casinos"
+msgstr "Encontrar casinos"
 
 #: includes/class-lb-cc-rest.php:61 includes/class-lb-cc-rest.php:73
 msgid "No compare results"
-msgstr "No comparar resultados"
+msgstr "Não comparar resultados"
 
 #: includes/class-lb-cc-rest.php:168
 msgid "html card of the casino."
-msgstr "tarjeta html del casino."
+msgstr "carta html do casino."
 
 #: public/class-lb-cc-public.php:103
 #, php-format
 msgid "The maximum number of casinos for comparison is %d"
-msgstr "El número máximo de casinos para la comparación es %d"
+msgstr "O número máximo de casinos para comparação é %d"
 
 #: public/class-lb-cc-public.php:104
 msgid "error"
-msgstr "error"
+msgstr "erro"
 
 #: public/class-lb-cc-public.php:105
 msgid "success"
-msgstr "éxito"
+msgstr "sucesso"
 
 #: public/class-lb-cc-public.php:106
 msgid "attention"
-msgstr "atención"
+msgstr "atenção"
 
 #: public/class-lb-cc-public.php:107
 msgid "loading"
-msgstr "cargando"
+msgstr "carregando"
 
 #: public/class-lb-cc-public.php:108
 msgid "info"
-msgstr "información"
+msgstr "informação"
 
 #: public/class-lb-cc-public.php:109
 msgid "tip"
-msgstr "consejo"
+msgstr "ponta"
 
 #: public/class-lb-cc-public.php:110
 msgid "cancel"
@@ -111,28 +111,28 @@ msgstr "cancelar"
 
 #: public/templates/compare-bar.php:6
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Fechar"
 
 #: public/templates/compare-bar.php:9
 msgid "Selected casinos for comparison"
-msgstr "Casinos seleccionados para comparar"
+msgstr "Casinos seleccionados para comparação"
 
 #: public/templates/compare-bar.php:10
 #, php-format
 msgid "Maximum number of casinos for comparison %d"
-msgstr "Número máximo de casinos para la comparación %d"
+msgstr "Número máximo de casinos para comparação %d"
 
 #: public/templates/compare-bar.php:16
 msgid "Go to Compare"
-msgstr "Ir a comparación"
+msgstr "Ir para comparar"
 
 #: public/templates/compare-item-block.php:20
 msgid "has"
-msgstr "tiene"
+msgstr "tem"
 
 #: public/templates/compare-item-block.php:20
 msgid "hasn't"
-msgstr "no ha"
+msgstr "não tem"
 
 #: public/templates/compare-item-block.php:22
 msgid "N/A"
@@ -141,35 +141,35 @@ msgstr "N/A"
 #: public/templates/compare-item.php:7
 #: public/templates/compare-preview-item.php:5
 msgid "remove item"
-msgstr "eliminar elemento"
+msgstr "remover item"
 
 #: public/templates/compare-item.php:14
 msgid "Review"
-msgstr "Consulte"
+msgstr "Revisão"
 
 #: public/templates/compare-modal.php:2
 msgid "close modal"
-msgstr "cerrar modal"
+msgstr "fechar modal"
 
 #: public/templates/compare-modal.php:6
 msgid "Results of comparison"
-msgstr "Resultados de la comparación"
+msgstr "Resultados da comparação"
 
 #: public/templates/toggle-button.php:3
 msgid "Add to compare"
-msgstr "Añadir para comparar"
+msgstr "Adicionar para comparar"
 
 #: public/templates/toggle-button.php:4
 msgid "Remove from compare"
-msgstr "Eliminar de la comparación"
+msgstr "Remover da comparação"
 
 #. Plugin Name of the plugin/theme
 msgid "LB Casinos Compare"
-msgstr "Comparación de casinos LB"
+msgstr "LB Casinos Compare"
 
 #. Description of the plugin/theme
 msgid ""
 "Casino comparison: modal window for comparison, separate page for comparison."
 msgstr ""
-"Comparación de casinos: ventana modal para la comparación, página separada "
-"para la comparación."
+"Comparação de casinos: janela modal para comparação, página separada para "
+"comparação."
