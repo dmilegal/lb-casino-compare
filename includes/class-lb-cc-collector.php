@@ -28,7 +28,7 @@ class LB_CC_Collector {
 			array_push($blocks,static::collect_bonuses($id));
 			else {
 				$tax = get_taxonomy($setting['block']);
-				$data = static::collect_tax($id, $setting['block'], $tax->label);
+				$data = static::collect_tax($id, $setting['block'], __($tax->label, 'lb-cc'));
 				if (count($data['list']))
 					array_push($blocks, $data);
 			}
