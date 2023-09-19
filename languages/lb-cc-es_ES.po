@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LB Casinos Compare\n"
 "POT-Creation-Date: 2023-09-19 00:00+0300\n"
-"PO-Revision-Date: 2023-09-19 01:32+0300\n"
+"PO-Revision-Date: 2023-09-19 09:55+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -75,6 +75,50 @@ msgstr "No comparar resultados"
 #: includes/class-lb-cc-rest.php:168
 msgid "html card of the casino."
 msgstr "tarjeta html del casino."
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Software"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Deposit Methods"
+msgstr "Métodos de depósito"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Withdrawal Methods"
+msgstr "Métodos de retirada"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Withdrawal Limits"
+msgstr "Límites de retirada"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Restricted Countries"
+msgstr "Países restringidos"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Licences"
+msgstr "Licencias"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Languages"
+msgstr "Idiomas"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Currencies"
+msgstr "Divisas"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Owner"
+msgstr "Propietario"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Established"
+msgstr "Establecido"
 
 #: public/class-lb-cc-public.php:103
 #, php-format
