@@ -501,7 +501,7 @@
 
 .lb-cc-block__title {
   position: sticky;
-  top: -1px;
+  top: 0px;
   text-align: center;
   font-size: 1.125rem;
   line-height: 1.2em;
