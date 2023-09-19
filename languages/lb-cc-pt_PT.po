@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LB Casinos Compare\n"
 "POT-Creation-Date: 2023-09-19 00:01+0300\n"
-"PO-Revision-Date: 2023-09-19 09:58+0300\n"
+"PO-Revision-Date: 2023-09-19 10:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -119,6 +119,14 @@ msgstr "Proprietário"
 #: includes/class-lb-cc-collector.php:105
 msgid "Established"
 msgstr "Estabelecido"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "Yes"
+msgstr "Sim"
+
+#: includes/class-lb-cc-collector.php:105
+msgid "No"
+msgstr "Não"
 
 #: public/class-lb-cc-public.php:103
 #, php-format
