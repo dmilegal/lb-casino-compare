@@ -99,7 +99,7 @@ class LB_CC_Public {
 
 		wp_enqueue_script(  $this->plugin_name . '-awesome-notifications', plugin_dir_url( __FILE__ ) . 'js/libs/awesome-notifications.js', array(  ), $this->version, true );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lb-cc-public.js', array( 'jquery' ), $this->version, true );
-		wp_add_inline_script( $this->plugin_name, 'const LB_CC_COOKIE_NAME="'. LB_CC_State::COMPARE_COOKIE_NAME . '"; LB_CC_LIMIT='. LB_CC_COMPARE_LIMIT .'; LB_CC_TRANSLATE={
+		wp_add_inline_script( $this->plugin_name, 'const LB_CC_COOKIE_NAME="'. LB_CC_State::COMPARE_COOKIE_NAME . '-' . base64_encode(home_url()) . '"; LB_CC_LIMIT='. LB_CC_COMPARE_LIMIT .'; LB_CC_TRANSLATE={
 			MAX_LIMIT: "'. sprintf(__('The maximum number of casinos for comparison is %d', 'lb-cc'), LB_CC_COMPARE_LIMIT) .'",
 			error: "'. __('error', 'lb-cc') .'",
 			success: "'. __('success', 'lb-cc') .'",
@@ -110,6 +110,7 @@ class LB_CC_Public {
 			cancel: "'. __('cancel', 'lb-cc') .'",
 		};
 		const LB_CC_ROUTES = {
+			home_url: "'. home_url() .'",
 			namespace: "'. LB_CC_Rest::namespace .'",
 			preview_compares: "'. LB_CC_Rest::preview_compares_route .'",
 			table_route: "'. LB_CC_Rest::compare_table_route .'",

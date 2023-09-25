@@ -160,7 +160,7 @@
 
     try {
       const res = await fetch(
-        "/wp-json/" +
+          LB_CC_ROUTES.home_url + "/wp-json/" +
           LB_CC_ROUTES.namespace +
           LB_CC_ROUTES.preview_compares +
           "?" +
@@ -198,7 +198,7 @@
 
     try {
       const res = await fetch(
-        "/wp-json/" +
+          LB_CC_ROUTES.home_url + "/wp-json/" +
           LB_CC_ROUTES.namespace +
           LB_CC_ROUTES.table_route +
           "?" +
