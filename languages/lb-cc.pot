@@ -1,0 +1,175 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LB Casinos Compare\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-25 18:06+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.6; wp-6.3.2\n"
+"X-Domain: lb-cc"
+
+#: public/templates/toggle-button.php:3
+msgid "Add to compare"
+msgstr ""
+
+#: public/class-lb-cc-public.php:106
+msgid "attention"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:72
+msgid "Best bonus"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:84
+msgid "Birthday bonus"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:45
+msgid "Bonuses"
+msgstr ""
+
+#: public/class-lb-cc-public.php:110
+msgid "cancel"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:78
+msgid "Cashback"
+msgstr ""
+
+#: admin/class-lb-cc-admin.php:63 admin/class-lb-cc-admin.php:64
+msgid "Casino Comparison"
+msgstr ""
+
+#: admin/class-lb-cc-admin.php:73
+msgid "Casino Comparison Settings"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Casino comparison: modal window for comparison, separate page for comparison."
+msgstr ""
+
+#: public/templates/compare-bar.php:6
+msgid "Close"
+msgstr ""
+
+#: public/templates/compare-modal.php:2
+msgid "close modal"
+msgstr ""
+
+#. Author of the plugin
+msgid "Dmitriy Krapivko"
+msgstr ""
+
+#: public/class-lb-cc-public.php:104
+msgid "error"
+msgstr ""
+
+#: includes/class-lb-cc-rest.php:61 includes/class-lb-cc-rest.php:73
+msgid "Find casinos"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:48
+msgid "For whom"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:54
+msgid "Form"
+msgstr ""
+
+#: public/templates/compare-bar.php:16
+msgid "Go to Compare"
+msgstr ""
+
+#: public/templates/compare-item-block.php:20
+msgid "has"
+msgstr ""
+
+#: public/templates/compare-item-block.php:20
+msgid "hasn't"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/dmilegal"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/dmilegal/lb-casino-compare"
+msgstr ""
+
+#: public/class-lb-cc-public.php:108
+msgid "info"
+msgstr ""
+
+#. Name of the plugin
+msgid "LB Casinos Compare"
+msgstr ""
+
+#: public/class-lb-cc-public.php:107
+msgid "loading"
+msgstr ""
+
+#: public/templates/compare-bar.php:10
+msgid "Maximum number of casinos for comparison %d"
+msgstr ""
+
+#: public/templates/compare-item-block.php:22
+msgid "N/A"
+msgstr ""
+
+#: includes/class-lb-cc-rest.php:61 includes/class-lb-cc-rest.php:73
+msgid "No compare results"
+msgstr ""
+
+#: public/templates/toggle-button.php:4
+msgid "Remove from compare"
+msgstr ""
+
+#: public/templates/compare-preview-item.php:5 
+#: public/templates/compare-item.php:7
+msgid "remove item"
+msgstr ""
+
+#: public/templates/compare-modal.php:6
+msgid "Results of comparison"
+msgstr ""
+
+#: public/templates/compare-item.php:14
+msgid "Review"
+msgstr ""
+
+#: public/templates/compare-bar.php:9
+msgid "Selected casinos for comparison"
+msgstr ""
+
+#: admin/class-lb-cc-admin.php:74
+msgid "Settings"
+msgstr ""
+
+#: public/class-lb-cc-public.php:105
+msgid "success"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:66
+msgid "Term"
+msgstr ""
+
+#: public/class-lb-cc-public.php:103
+msgid "The maximum number of casinos for comparison is %d"
+msgstr ""
+
+#: public/class-lb-cc-public.php:109
+msgid "tip"
+msgstr ""
+
+#: includes/class-lb-cc-collector.php:60
+msgid "Type"
+msgstr ""
