@@ -70,7 +70,7 @@ class LB_CC_Rest {
 
 		return [
 			'html' => $items_html,
-			'message' => count($items_html) ? __('Find casinos', 'lb-cc') : __('No compare results', 'lb-cc'),
+			'message' => count($posts) ? __('Find casinos', 'lb-cc') : __('No compare results', 'lb-cc'),
 		];
 	}
 
